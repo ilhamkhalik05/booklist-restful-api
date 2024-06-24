@@ -13,6 +13,10 @@ const postBook = (req, res) => {
       return response(res, 400, "Failed", "Page total and page read must be numbers!");
    }
 
+   if (pageTotal < 0 || pageRead < 0) {
+      return response(res, 400, "Failed", "Page total and page read can't be less than zero!");
+   }
+
    if (pageRead > pageTotal) {
       return response(res, 400, "Failed", "Page read can't be more than page total!");
    }
