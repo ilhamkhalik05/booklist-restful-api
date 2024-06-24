@@ -10,8 +10,8 @@ const port = 9000
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/', getBooks)
-app.post('/', postBook)
+app.get('/book', getBooks)
+app.post('/book', postBook)
 
 app.listen(port, () => {
    console.log(`This app is running on http://${host}:${port}`)
