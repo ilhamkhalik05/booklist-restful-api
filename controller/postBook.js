@@ -31,6 +31,7 @@ const postBook = (req, res) => {
       INSERT INTO books (id, title, author, page_total, page_read, is_read, is_finished, created_at, updated_at)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
    `;
+   
    const values = [
       id,
       title,
