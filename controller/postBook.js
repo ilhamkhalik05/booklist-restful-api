@@ -1,6 +1,6 @@
 const db = require('../db/connection');
 const { generateID, getCurrentDateTime, convertBoolToTinyInt } = require('../utils/function');
-const { response, responseWithData } = require('../utils/response');
+const { response, responseWithData, serverErrorResponse } = require('../utils/response');
 
 const postBook = (req, res) => {
    const { title, author, pageTotal, pageRead } = req.body;
@@ -46,9 +46,10 @@ const postBook = (req, res) => {
 
    db.query(sql, values, (err, result) => {
       if (err) {
-         console.log(err);
-         return response(res, 500, "Failed", "Error inserting book into the database");
+         serverErrorResponse(res)
+         return
       }
+      
       responseWithData(res, 201, "Created", "Create new book", result);
    });
 }

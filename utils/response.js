@@ -15,4 +15,12 @@ const response = (res, statusCode, statusText, message) => {
    })
 }
 
-module.exports = { response, responseWithData }
+const serverErrorResponse = (res) => {
+   res.status(500).json({
+      status_code: 500,
+      status_text: "Failed",
+      message: "Internal Server Error",
+   })
+}
+
+module.exports = { response, responseWithData, serverErrorResponse }

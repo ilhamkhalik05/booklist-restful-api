@@ -1,6 +1,6 @@
 const db = require('../db/connection')
 const { convertBoolToTinyInt, getCurrentDateTime } = require('../utils/function')
-const { responseWithData, response } = require('../utils/response')
+const { responseWithData, response, serverErrorResponse } = require('../utils/response')
 
 const updateBook = (req, res) => {
    const { id } = req.params
@@ -44,7 +44,11 @@ const updateBook = (req, res) => {
    ]
 
    db.query(sql, values, (err, result) => {
-      if (err) console.log(err)
+      if (err) {
+         serverErrorResponse(res)
+         return
+      }
+      
       responseWithData(res, 200, "Success", "Update book", result)
    })
 }

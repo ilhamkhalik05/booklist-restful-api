@@ -1,5 +1,5 @@
 const db = require('../db/connection')
-const { response, responseWithData } = require('../utils/response')
+const { response, responseWithData, serverErrorResponse } = require('../utils/response')
 
 const deleteBook = (req, res) => {
    const { id } = req.params
@@ -8,7 +8,11 @@ const deleteBook = (req, res) => {
 
    const sql = `DELETE FROM books WHERE id = ?`
    db.query(sql, [id], (err, result) => {
-      if (err) console.log(err)
+      if (err) {
+         serverErrorResponse(res)
+         return
+      }
+      
       responseWithData(res, 200, "Success", `Delete book with id (${id})`, result)
    })
 }
