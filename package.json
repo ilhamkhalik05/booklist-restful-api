@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "seed": "node db/seed.js",
+    "seed-all": "node db/seed-table/all.js",
+    "seed-users": "node db/seed-table/users.js",
+    "seed-books": "node db/seed-table/books.js",
     "drop-all": "node db/drop-table/all.js",
     "drop-users": "node db/drop-table/users.js",
     "drop-books": "node db/drop-table/books.js"
