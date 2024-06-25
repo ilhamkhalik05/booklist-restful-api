@@ -11,7 +11,7 @@ const updateBook = (req, res) => {
       return
    }
 
-   if (!title || !author || !pageTotal || !pageRead) {
+   if (!title || !author || !pageTotal || pageRead === undefined) {
       return response(res, 400, "Failed", "Please fill all the input!")
    }
 
