@@ -6,6 +6,11 @@ const updateBook = (req, res) => {
    const { id } = req.params
    const { title, author, pageTotal, pageRead } = req.body
 
+   if (!id) {
+      response(res, 404, "Failed", "Please give the book ID as a parameter!")
+      return
+   }
+
    if (!title || !author || !pageTotal || !pageRead) {
       return response(res, 400, "Failed", "Please fill all the input!")
    }
@@ -48,7 +53,7 @@ const updateBook = (req, res) => {
          serverErrorResponse(res)
          return
       }
-      
+
       responseWithData(res, 200, "Success", "Update book", result)
    })
 }

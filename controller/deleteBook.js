@@ -4,7 +4,10 @@ const { response, responseWithData, serverErrorResponse } = require('../utils/re
 const deleteBook = (req, res) => {
    const { id } = req.params
 
-   if (!id) response(res, 404, "Failed", "Book ID not found!")
+   if (!id) {
+      response(res, 404, "Failed", "Please give the book ID as a parameter!")
+      return
+   }
 
    const sql = `DELETE FROM books WHERE id = ?`
    db.query(sql, [id], (err, result) => {
@@ -12,7 +15,7 @@ const deleteBook = (req, res) => {
          serverErrorResponse(res)
          return
       }
-      
+
       responseWithData(res, 200, "Success", `Delete book with id (${id})`, result)
    })
 }
