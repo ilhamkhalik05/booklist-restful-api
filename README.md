@@ -1,4 +1,3 @@
-// Rest Api Provider for Book Data
+# Booklist Restful API
 
---Node.Js
---Express.Js
+My first rest api server that serve list of dummy book
